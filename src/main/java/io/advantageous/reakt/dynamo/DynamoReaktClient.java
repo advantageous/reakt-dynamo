@@ -9,6 +9,7 @@ import io.advantageous.reakt.promise.Promises;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class DynamoReaktClient {
 
@@ -264,4 +265,77 @@ public class DynamoReaktClient {
                 dynamoDBAsyncClient.deleteTableAsync(tableName,
                         convertPromiseToAsyncResult(returnPromise)));
     }
+
+    public AmazonDynamoDBAsyncClient getDynamoDBAsyncClient() {
+        return dynamoDBAsyncClient;
+    }
+
+    public Promise<DescribeLimitsResult> describeLimits(final DescribeLimitsRequest request) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.describeLimitsAsync(request,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<DescribeTableResult> describeTable(final DescribeTableRequest request) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.describeTableAsync(request,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<DescribeTableResult> describeTable(final String tableName) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.describeTableAsync(tableName,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<GetItemResult> getItem(final GetItemRequest request) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.getItemAsync(request,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+
+    public Promise<GetItemResult> getItem(final String tableName, final Map<String,AttributeValue> key) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.getItemAsync(tableName, key,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<GetItemResult> getItem(final String tableName,
+                                          final Map<String,AttributeValue> key,
+                                          final boolean consistentRead) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.getItemAsync(tableName, key, consistentRead,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<PutItemResult> putItem(final String tableName,
+                                          final Map<String,AttributeValue> item) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.putItemAsync(tableName, item,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+    public Promise<PutItemResult> putItem(final String tableName,
+                                          final Map<String,AttributeValue> item,
+                                          final String returnValues) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.putItemAsync(tableName, item, returnValues,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<PutItemResult> putItem(final PutItemRequest request) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.putItemAsync(request,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<QueryResult>	query(final QueryRequest request) {
+        return Promises.invokablePromise(new Consumer<Promise<QueryResult>>() {
+            @Override
+            public void accept(Promise<QueryResult> returnPromise) {
+                dynamoDBAsyncClient.queryAsync(request, convertPromiseToAsyncResult(returnPromise));
+            }
+        });
+    }
+    
 }
