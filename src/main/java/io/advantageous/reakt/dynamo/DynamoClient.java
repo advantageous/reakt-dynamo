@@ -11,17 +11,17 @@ import java.util.Map;
 
 import static io.advantageous.reakt.promise.Promises.invokablePromise;
 
-public class DynamoReaktClient {
+public class DynamoClient {
 
 
     private final AmazonDynamoDBAsyncClient dynamoDBAsyncClient;
 
-    public DynamoReaktClient(AmazonDynamoDBAsyncClient dynamoDBAsyncClient) {
+    public DynamoClient(AmazonDynamoDBAsyncClient dynamoDBAsyncClient) {
         this.dynamoDBAsyncClient = dynamoDBAsyncClient;
     }
 
-    public static DynamoReaktClient create(final AmazonDynamoDBAsyncClient dynamoDBAsyncClient) {
-        return new DynamoReaktClient(dynamoDBAsyncClient);
+    public static DynamoClient create(final AmazonDynamoDBAsyncClient dynamoDBAsyncClient) {
+        return new DynamoClient(dynamoDBAsyncClient);
     }
 
 
