@@ -88,12 +88,12 @@ uploadArchives {
                 name project.name
                 description "Reactive interfaces. Promises, Streams, Callbacks, Async results, interfaces for Java  that are lambda expression friendly and fluent."
 
-                url 'https://github.com/advantageous/reakt'
+                url 'https://github.com/advantageous/reakt-dynamo'
 
                 scm {
-                    url 'scm:git@github.com:advantageous/reakt.git'
-                    connection 'scm:git@github.com:advantageous/reakt.git'
-                    developerConnection 'scm:git@github.com:advantageous/reakt.git'
+                    url 'scm:git@github.com:advantageous/reakt-dynamo.git'
+                    connection 'scm:git@github.com:advantageous/reakt-dynamo.git'
+                    developerConnection 'scm:git@github.com:advantageous/reakt-dynamo.git'
                 }
 
                 licenses {
