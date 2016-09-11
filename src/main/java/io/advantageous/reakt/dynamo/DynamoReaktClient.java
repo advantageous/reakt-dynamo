@@ -7,6 +7,7 @@ import com.amazonaws.services.dynamodbv2.model.*;
 import io.advantageous.reakt.promise.Promise;
 import io.advantageous.reakt.promise.Promises;
 
+import java.util.List;
 import java.util.Map;
 
 public class DynamoReaktClient {
@@ -133,5 +134,26 @@ public class DynamoReaktClient {
                 convertPromiseToAsyncResult(returnPromise)));
     }
 
+    /**
+     * batchWriteItemAsync
+     * @param request request
+     * @return promise of BatchWriteItemResult
+     */
+    public Promise<BatchWriteItemResult> batchWriteItemAsync(final BatchWriteItemRequest request) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.batchWriteItemAsync(request,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
 
+
+    /**
+     * batchWriteItemAsync
+     * @param requestItems requestItems
+     * @return promise of BatchWriteItemResult
+     */
+    public Promise<BatchWriteItemResult> batchWriteItemAsync(final Map<String,List<WriteRequest>> requestItems) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.batchWriteItemAsync(requestItems,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
 }
