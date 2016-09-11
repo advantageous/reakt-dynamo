@@ -5,11 +5,11 @@ import com.amazonaws.handlers.AsyncHandler;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBAsyncClient;
 import com.amazonaws.services.dynamodbv2.model.*;
 import io.advantageous.reakt.promise.Promise;
-import io.advantageous.reakt.promise.Promises;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
+
+import static io.advantageous.reakt.promise.Promises.invokablePromise;
 
 public class DynamoReaktClient {
 
@@ -22,7 +22,6 @@ public class DynamoReaktClient {
 
     public static DynamoReaktClient create(final AmazonDynamoDBAsyncClient dynamoDBAsyncClient) {
         return new DynamoReaktClient(dynamoDBAsyncClient);
-
     }
 
 
@@ -30,7 +29,7 @@ public class DynamoReaktClient {
      * Simplified method form for invoking the ListTables operation.
      */
     public Promise<ListTablesResult> listTables() {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.listTablesAsync(convertPromiseToAsyncResult(returnPromise)));
     }
 
@@ -42,7 +41,7 @@ public class DynamoReaktClient {
      * @return async promise
      */
     public Promise<ListTablesResult> listTables(final String exclusiveStartTableName) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.listTablesAsync(exclusiveStartTableName, convertPromiseToAsyncResult(returnPromise)));
     }
 
@@ -54,7 +53,7 @@ public class DynamoReaktClient {
      * @return async promise
      */
     public Promise<ListTablesResult> listTables(final String exclusiveStartTableName, final int limit) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.listTablesAsync(exclusiveStartTableName, convertPromiseToAsyncResult(returnPromise)));
     }
 
@@ -66,7 +65,7 @@ public class DynamoReaktClient {
      * @return async promise
      */
     public Promise<ListTablesResult> listTables(final int limit) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.listTablesAsync(limit, convertPromiseToAsyncResult(returnPromise)));
     }
 
@@ -77,7 +76,7 @@ public class DynamoReaktClient {
      * @return async promise
      */
     public Promise<ListTablesResult> listTables(ListTablesRequest listTablesRequest) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.listTablesAsync(listTablesRequest, convertPromiseToAsyncResult(returnPromise)));
     }
 
@@ -105,7 +104,7 @@ public class DynamoReaktClient {
      * @return Promise of BatchGetItemResult
      */
     public Promise<BatchGetItemResult> batchGetItem(final BatchGetItemRequest request) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.batchGetItemAsync(request, convertPromiseToAsyncResult(returnPromise)));
     }
 
@@ -117,7 +116,7 @@ public class DynamoReaktClient {
      * @return Promise of BatchGetItemResult
      */
     public Promise<BatchGetItemResult> batchGetItem(final Map<String, KeysAndAttributes> requestItems) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.batchGetItemAsync(requestItems, convertPromiseToAsyncResult(returnPromise)));
     }
 
@@ -130,7 +129,7 @@ public class DynamoReaktClient {
      */
     public Promise<BatchGetItemResult> batchGetItem(final Map<String, KeysAndAttributes> requestItems,
                                                     final String returnConsumedCapacity) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.batchGetItemAsync(requestItems, returnConsumedCapacity,
                         convertPromiseToAsyncResult(returnPromise)));
     }
@@ -142,7 +141,7 @@ public class DynamoReaktClient {
      * @return promise of BatchWriteItemResult
      */
     public Promise<BatchWriteItemResult> batchWriteItem(final BatchWriteItemRequest request) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.batchWriteItemAsync(request,
                         convertPromiseToAsyncResult(returnPromise)));
     }
@@ -155,7 +154,7 @@ public class DynamoReaktClient {
      * @return promise of BatchWriteItemResult
      */
     public Promise<BatchWriteItemResult> batchWriteItem(final Map<String, List<WriteRequest>> requestItems) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.batchWriteItemAsync(requestItems,
                         convertPromiseToAsyncResult(returnPromise)));
     }
@@ -167,7 +166,7 @@ public class DynamoReaktClient {
      * @return promise of create table
      */
     public Promise<CreateTableResult> createTable(final CreateTableRequest request) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.createTableAsync(request,
                         convertPromiseToAsyncResult(returnPromise)));
     }
@@ -184,7 +183,7 @@ public class DynamoReaktClient {
                                                   final String tableName,
                                                   final List<KeySchemaElement> keySchema,
                                                   final ProvisionedThroughput provisionedThroughput) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.createTableAsync(attributeDefinitions, tableName, keySchema, provisionedThroughput,
                         convertPromiseToAsyncResult(returnPromise)));
     }
@@ -208,7 +207,7 @@ public class DynamoReaktClient {
      * @return promise of DeleteItemResult
      */
     public Promise<DeleteItemResult> deleteItem(final DeleteItemRequest request) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.deleteItemAsync(request,
                         convertPromiseToAsyncResult(returnPromise)));
     }
@@ -221,7 +220,7 @@ public class DynamoReaktClient {
      * @return promise of DeleteItemResult
      */
     public Promise<DeleteItemResult> deleteItem(final String tableName, final Map<String, AttributeValue> key) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.deleteItemAsync(tableName, key,
                         convertPromiseToAsyncResult(returnPromise)));
     }
@@ -237,7 +236,7 @@ public class DynamoReaktClient {
     public Promise<DeleteItemResult> deleteItem(final String tableName,
                                                 final Map<String, AttributeValue> key,
                                                 final String returnItems) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.deleteItemAsync(tableName, key,
                         convertPromiseToAsyncResult(returnPromise)));
     }
@@ -249,7 +248,7 @@ public class DynamoReaktClient {
      * @return promise of DeleteTableResult
      */
     public Promise<DeleteTableResult> deleteTable(final DeleteTableRequest request) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.deleteTableAsync(request,
                         convertPromiseToAsyncResult(returnPromise)));
     }
@@ -261,7 +260,7 @@ public class DynamoReaktClient {
      * @return promise of DeleteTableResult
      */
     public Promise<DeleteTableResult> deleteTable(final String tableName) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.deleteTableAsync(tableName,
                         convertPromiseToAsyncResult(returnPromise)));
     }
@@ -271,71 +270,133 @@ public class DynamoReaktClient {
     }
 
     public Promise<DescribeLimitsResult> describeLimits(final DescribeLimitsRequest request) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.describeLimitsAsync(request,
                         convertPromiseToAsyncResult(returnPromise)));
     }
 
     public Promise<DescribeTableResult> describeTable(final DescribeTableRequest request) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.describeTableAsync(request,
                         convertPromiseToAsyncResult(returnPromise)));
     }
 
     public Promise<DescribeTableResult> describeTable(final String tableName) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.describeTableAsync(tableName,
                         convertPromiseToAsyncResult(returnPromise)));
     }
 
     public Promise<GetItemResult> getItem(final GetItemRequest request) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.getItemAsync(request,
                         convertPromiseToAsyncResult(returnPromise)));
     }
 
 
-    public Promise<GetItemResult> getItem(final String tableName, final Map<String,AttributeValue> key) {
-        return Promises.invokablePromise(returnPromise ->
+    public Promise<GetItemResult> getItem(final String tableName, final Map<String, AttributeValue> key) {
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.getItemAsync(tableName, key,
                         convertPromiseToAsyncResult(returnPromise)));
     }
 
     public Promise<GetItemResult> getItem(final String tableName,
-                                          final Map<String,AttributeValue> key,
+                                          final Map<String, AttributeValue> key,
                                           final boolean consistentRead) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.getItemAsync(tableName, key, consistentRead,
                         convertPromiseToAsyncResult(returnPromise)));
     }
 
     public Promise<PutItemResult> putItem(final String tableName,
-                                          final Map<String,AttributeValue> item) {
-        return Promises.invokablePromise(returnPromise ->
+                                          final Map<String, AttributeValue> item) {
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.putItemAsync(tableName, item,
                         convertPromiseToAsyncResult(returnPromise)));
     }
+
     public Promise<PutItemResult> putItem(final String tableName,
-                                          final Map<String,AttributeValue> item,
+                                          final Map<String, AttributeValue> item,
                                           final String returnValues) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.putItemAsync(tableName, item, returnValues,
                         convertPromiseToAsyncResult(returnPromise)));
     }
 
     public Promise<PutItemResult> putItem(final PutItemRequest request) {
-        return Promises.invokablePromise(returnPromise ->
+        return invokablePromise(returnPromise ->
                 dynamoDBAsyncClient.putItemAsync(request,
                         convertPromiseToAsyncResult(returnPromise)));
     }
 
-    public Promise<QueryResult>	query(final QueryRequest request) {
-        return Promises.invokablePromise(new Consumer<Promise<QueryResult>>() {
-            @Override
-            public void accept(Promise<QueryResult> returnPromise) {
-                dynamoDBAsyncClient.queryAsync(request, convertPromiseToAsyncResult(returnPromise));
-            }
-        });
+    public Promise<QueryResult> query(final QueryRequest request) {
+        return invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.queryAsync(request, convertPromiseToAsyncResult(returnPromise)));
     }
-    
+
+    public Promise<ScanResult> scan(final ScanRequest request) {
+        return invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.scanAsync(request, convertPromiseToAsyncResult(returnPromise)));
+    }
+
+
+    public Promise<ScanResult> scan(final String tableName, final List<String> attributesToGet) {
+        return invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.scanAsync(tableName, attributesToGet, convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<ScanResult> scan(final String tableName,
+                                    final List<String> attributesToGet,
+                                    final Map<String, Condition> scanFilter) {
+        return invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.scanAsync(tableName, attributesToGet, scanFilter,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<ScanResult> scan(final String tableName,
+                                    final Map<String, Condition> scanFilter) {
+        return invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.scanAsync(tableName, scanFilter,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<UpdateItemResult> updateItem(final UpdateItemRequest request) {
+        return invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.updateItemAsync(request,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<UpdateItemResult> updateItem(final String tableName,
+                                                final Map<String, AttributeValue> key,
+                                                final Map<String, AttributeValueUpdate> attributeUpdates,
+                                                final String returnValues) {
+        return invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.updateItemAsync(tableName, key, attributeUpdates, returnValues,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+
+    public Promise<UpdateItemResult> updateItem(final String tableName,
+                                                final Map<String, AttributeValue> key,
+                                                final Map<String, AttributeValueUpdate> attributeUpdates) {
+        return invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.updateItemAsync(tableName, key, attributeUpdates,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+
+    public Promise<UpdateTableResult> updateTable(final UpdateTableRequest request) {
+        return invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.updateTableAsync(request,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    public Promise<UpdateTableResult> updateTable(final String tableName,
+                                                  final ProvisionedThroughput provisionedThroughput) {
+        return invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.updateTableAsync(tableName, provisionedThroughput,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+
 }
