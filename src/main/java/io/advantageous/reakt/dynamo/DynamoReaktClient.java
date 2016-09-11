@@ -240,4 +240,28 @@ public class DynamoReaktClient {
                 dynamoDBAsyncClient.deleteItemAsync(tableName, key,
                         convertPromiseToAsyncResult(returnPromise)));
     }
+
+    /**
+     * The DeleteTable operation deletes a table and all of its items.
+     *
+     * @param request request
+     * @return promise of DeleteTableResult
+     */
+    public Promise<DeleteTableResult> deleteTable(final DeleteTableRequest request) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.deleteTableAsync(request,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
+
+    /**
+     * Simplified method form for invoking the DeleteTable operation.
+     *
+     * @param tableName tableName
+     * @return promise of DeleteTableResult
+     */
+    public Promise<DeleteTableResult> deleteTable(final String tableName) {
+        return Promises.invokablePromise(returnPromise ->
+                dynamoDBAsyncClient.deleteTableAsync(tableName,
+                        convertPromiseToAsyncResult(returnPromise)));
+    }
 }
